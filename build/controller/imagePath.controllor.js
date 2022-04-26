@@ -13,7 +13,7 @@ var images = [
     'icelandwaterfall',
 ];
 exports.images = images;
-var imagesDir = path_1.default.join(__dirname, '../image');
+var imagesDir = path_1.default.join(__dirname, '../../image');
 exports.imagesDir = imagesDir;
-var resizedImagesDir = path_1.default.join(__dirname, '../image/resized');
+var resizedImagesDir = path_1.default.join(__dirname, '../../image/resized');
 exports.resizedImagesDir = resizedImagesDir;

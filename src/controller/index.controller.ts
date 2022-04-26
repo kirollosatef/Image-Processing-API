@@ -8,21 +8,25 @@ const getImage = async (req: Request, res: Response): Promise<void> => {
   const fileName: string = req.query.fileName as string
   const width: number = parseInt(req.query.width as string)
   const height: number = parseInt(req.query.height as string)
-  imageValidation(fileName, width, height, res)
-  try {
-    const imageExist: boolean = await isExist(fileName, width, height)
-    if (!imageExist) {
-      await resizeImage(fileName, width, height)
-      res
-        .status(200)
-        .sendFile(`${resizedImagesDir}/${fileName}_${width}_${height}.jpg`)
-    } else {
-      res
-        .status(200)
-        .sendFile(`${resizedImagesDir}/${fileName}_${width}_${height}.jpg`)
+  const validation = await imageValidation(fileName, width, height)
+  if (validation === 'ok') {
+    try {
+      const imageExist: boolean = await isExist(fileName, width, height)
+      if (!imageExist) {
+        await resizeImage(fileName, width, height)
+        res
+          .status(200)
+          .sendFile(`${resizedImagesDir}/${fileName}_${width}_${height}.jpg`)
+      } else {
+        res
+          .status(200)
+          .sendFile(`${resizedImagesDir}/${fileName}_${width}_${height}.jpg`)
+      }
+    } catch (err) {
+      console.log(err)
     }
-  } catch (err) {
-    console.log(err)
+  } else {
+    res.status(400).send(validation)
   }
 }
 

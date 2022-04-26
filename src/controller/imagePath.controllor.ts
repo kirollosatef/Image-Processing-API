@@ -8,8 +8,8 @@ const images: string[] = [
   'icelandwaterfall',
 ]
 
-const imagesDir = path.join(__dirname, '../image')
+const imagesDir = path.join(__dirname, '../../image')
 
-const resizedImagesDir = path.join(__dirname, '../image/resized')
+const resizedImagesDir = path.join(__dirname, '../../image/resized')
 
 export { images, imagesDir, resizedImagesDir }

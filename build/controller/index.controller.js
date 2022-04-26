@@ -42,44 +42,48 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var resize_controller_1 = __importDefault(require("./resize.controller"));
 var ifImageExist_controller_1 = __importDefault(require("./ifImageExist.controller"));
 var imagePath_controllor_1 = require("./imagePath.controllor");
+var validation_controller_1 = __importDefault(require("../controller/validation.controller"));
 var getImage = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var fileName, width, height, imageExist, err_1;
+    var fileName, width, height, validation, imageExist, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 fileName = req.query.fileName;
                 width = parseInt(req.query.width);
                 height = parseInt(req.query.height);
-                console.log("fileName: ".concat(fileName, " & width: ").concat(width, " & height: ").concat(height));
-                _a.label = 1;
+                return [4 /*yield*/, (0, validation_controller_1.default)(fileName, width, height)];
             case 1:
-                _a.trys.push([1, 6, , 7]);
-                return [4 /*yield*/, (0, ifImageExist_controller_1.default)(fileName, width, height)];
+                validation = _a.sent();
+                if (!(validation === 'ok')) return [3 /*break*/, 9];
+                _a.label = 2;
             case 2:
-                imageExist = _a.sent();
-                console.log("imageExist: ".concat(imageExist));
-                console.time('resizeImageTime');
-                if (!!imageExist) return [3 /*break*/, 4];
-                return [4 /*yield*/, (0, resize_controller_1.default)(fileName, width, height)];
+                _a.trys.push([2, 7, , 8]);
+                return [4 /*yield*/, (0, ifImageExist_controller_1.default)(fileName, width, height)];
             case 3:
+                imageExist = _a.sent();
+                if (!!imageExist) return [3 /*break*/, 5];
+                return [4 /*yield*/, (0, resize_controller_1.default)(fileName, width, height)];
+            case 4:
                 _a.sent();
                 res
                     .status(200)
                     .sendFile("".concat(imagePath_controllor_1.resizedImagesDir, "/").concat(fileName, "_").concat(width, "_").concat(height, ".jpg"));
-                return [3 /*break*/, 5];
-            case 4:
+                return [3 /*break*/, 6];
+            case 5:
                 res
                     .status(200)
                     .sendFile("".concat(imagePath_controllor_1.resizedImagesDir, "/").concat(fileName, "_").concat(width, "_").concat(height, ".jpg"));
-                _a.label = 5;
-            case 5:
-                console.timeEnd('resizeImageTime');
-                return [3 /*break*/, 7];
-            case 6:
+                _a.label = 6;
+            case 6: return [3 /*break*/, 8];
+            case 7:
                 err_1 = _a.sent();
                 console.log(err_1);
-                return [3 /*break*/, 7];
-            case 7: return [2 /*return*/];
+                return [3 /*break*/, 8];
+            case 8: return [3 /*break*/, 10];
+            case 9:
+                res.status(400).send(validation);
+                _a.label = 10;
+            case 10: return [2 /*return*/];
         }
     });
 }); };

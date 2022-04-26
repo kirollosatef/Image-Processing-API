@@ -6268,3 +6268,11 @@ node_modules/yn/package.json
 node_modules/yn/readme.md
 build/tests/index.spec.js
 build/tests/index.spec.js
+build/index.js
+build/controller/ifImageExist.controller.js
+build/controller/imagePath.controllor.js
+build/controller/index.controller.js
+build/controller/resize.controller.js
+build/controller/validation.controller.js
+build/routes/img.routes.js
+build/tests/helpers/reporter.js

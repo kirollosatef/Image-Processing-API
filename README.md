@@ -76,4 +76,4 @@ The endpoint is `api/images` and requires three query params:
 
 An example of a correct endpoint call would be: 
 
-[http://localhost:3000/api/images?filename=palmtunnel&height=250&width=220](http://localhost:3000/api/images?filename=palmtunnel&height=250&width=220)
+[http://localhost:3000/api/images?fileName=palmtunnel&height=250&width=220](http://localhost:3000/api/images?fileName=palmtunnel&height=250&width=220)

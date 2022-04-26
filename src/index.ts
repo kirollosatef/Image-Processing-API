@@ -8,3 +8,5 @@ app.use('/api', imgRouter)
 app.listen(port, () => {
   console.log(`server is up and running in port ${port}`)
 })
+
+export default app

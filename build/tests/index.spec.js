@@ -43,15 +43,25 @@ var ifImageExist_controller_1 = __importDefault(require("../controller/ifImageEx
 var resize_controller_1 = __importDefault(require("../controller/resize.controller"));
 var supertest_1 = __importDefault(require("supertest"));
 var index_1 = __importDefault(require("../index"));
+var fs_1 = require("fs");
+var imagePath_controllor_1 = require("../controller/imagePath.controllor");
 var request = (0, supertest_1.default)(index_1.default);
 describe('Test if Image Exist or Not', function () {
     it('expect checkIfImagesExist function defined ', function () {
         expect((0, ifImageExist_controller_1.default)('labla', 200, 200)).toBeDefined();
     });
-    it('expect checkIfImagesExist function to return false with file name test_200_200.jpg ', function () {
-        (0, resize_controller_1.default)('test', 200, 200);
-        expect((0, ifImageExist_controller_1.default)('test', 200, 200)).toBeTruthy();
-    });
+    it('expect checkIfImagesExist function to return false with file name fjord_200_200.jpg ', function () { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, (0, resize_controller_1.default)('fjord', 200, 200)];
+                case 1:
+                    _a.sent();
+                    expect((0, ifImageExist_controller_1.default)('fjord', 200, 200)).toBeTruthy();
+                    fs_1.promises.unlink(imagePath_controllor_1.resizedImagesDir + '/fjord_200_200.jpg');
+                    return [2 /*return*/];
+            }
+        });
+    }); });
 });
 describe('Test endpoint', function () {
     it('expect endpoint to return 200', function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -62,6 +72,7 @@ describe('Test endpoint', function () {
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(200);
+                    fs_1.promises.unlink(imagePath_controllor_1.resizedImagesDir + '/fjord_100_200.jpg');
                     return [2 /*return*/];
             }
         });

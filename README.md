@@ -42,6 +42,7 @@ A jasmine testing
 npm run test
 ```
 ###### for example: ######
+![Screenshot 2022-04-23 120129](https://user-images.githubusercontent.com/74256854/165322350-879e927e-ec24-4394-9e07-6530c399358b.png)
 
 #### Formatting ####
 
